@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Product Catlog</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <body>
+            <h1>Todays fresh flowers are available for sale...</h1>
+            <hr/>
+            <button>GetFlowers</button>
+            <ol id="flowerslist">
+            </ol>
+            <p id="para"></p>
+
+           
+            <script>
+                $(document).ready(function(){
+                console.log("Document is ready");
+                $("button").click(function(){
+                    console.log("button is clicked...")
+                    var p = document.getElementById("para");
+                    p.innerHTML ="";
+                    $.get("/api/flowers", function(data, status){
+                    for (var i=0;i<data.length;i++){
+
+        p.innerHTML +=
+            "ID: " + data[i].id + "<br>" +
+            "Name: " + data[i].name + "<br>" +
+            "Description: " + data[i].description + "<br>" +
+            "Unit Price: " + data[i].unitprice + "<br>" +
+            "Quantity: " + data[i].quantity + "<br>" +
+            "Likes: " + data[i].likes + "<br><br>";
+    }
+
+            });
+                });
+                });
+    
+        </script>
+        </body>
+    
+</html>
